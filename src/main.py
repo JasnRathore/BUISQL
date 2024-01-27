@@ -7,28 +7,22 @@ class MyWindow(QMainWindow):
         super(MyWindow, self).__init__()
 
         self.TABLES = []
-        self.Var = "bye"
+        self.DB = ''
         self.setWindowTitle("PyQt5 Boilerplate")
         self.setGeometry(100, 100, 400, 300)
 
         self.central_widget = QWidget(self)
         self.setCentralWidget(self.central_widget)
         self.layout = QVBoxLayout()
-        self.label = QLabel(self.Var, self.central_widget)
-        self.layout.addWidget(self.label)
-        #CHeader(self.central_widget, self.layout, self.TABLES)
-        #CTableBar(self.central_widget, self.layout, self.TABLES)
 
-        self.button = QPushButton("reload App", self.central_widget)
-        self.button.clicked.connect(self.Update)
-        self.layout.addWidget(self.button)
+        self.Header = CHeader(self)
+        self.TableBar = CTableBar(self)
+        self.TableData = CTableData(self)
 
         self.central_widget.setLayout(self.layout)
-    def Update(self):
-        self.Var = "heelo"
-        print(self.Var)
 
-
+    def UpdateTableBar(self):
+        self.TableBar.updateTables(self.TABLES)
 
 
 if __name__ == "__main__":
