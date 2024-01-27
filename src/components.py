@@ -39,12 +39,11 @@ class CTableBar(QWidget):
         MainInstance.layout.addWidget(self)
 
     def updateTables(self, Tables):
-        TableDataComponent = self.MainInstance.TableData
         self.clear_children()
         for Table in Tables:
             Button = QPushButton(Table, self)
             Button.setObjectName(Table)
-            Button.clicked.connect(lambda: TableDataComponent.UpdateTableData(Table))
+            Button.clicked.connect(lambda: self.CallTable())
             self.TableBarLayout.addWidget(Button)
 
     def clear_children(self):
@@ -55,6 +54,13 @@ class CTableBar(QWidget):
             self.TableBarLayout.removeWidget(widget)
 
             widget.deleteLater()
+
+    def CallTable(self):
+        TableName = self.sender().objectName()
+        print(TableName)
+        TableDataComponent = self.MainInstance.TableData
+        TableDataComponent.UpdateTableData(TableName)
+
 
 class CTableData(QTableWidget):
     def __init__(self, MainInstance):
