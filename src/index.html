@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="output.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tauri App</title>
+    <script type="module" src="/main.js" defer></script>
+    <style>
+      .logo.vanilla:hover {
+        filter: drop-shadow(0 0 2em #ffe21c);
+      }
+    </style>
+  </head>
+
+  <body>
+    <main class="p-5 flex flex-row flex-str content h-screen gap-6 bg-neutral-900 text-white">
+      <div class="basis-2/12 h-full bg-neutral-800 rounded-xl py-5 flex flex-col border-0.2 border-emerald-200" id="SIDEBAR">
+
+        <div class="DB" id="hades">
+          <button class="BDButton" id="hades">
+             <i data-lucide="chevron-right" class="w-5 transition-transform duration-50 opacity-40"></i>
+             Hades
+          </button>
+          <div class="TABLES flex flex-row hidden">
+            <button class="TableButton">
+              <div class="TreeSub">  </div>
+              <p class="">Prisoners</p>
+            </button>
+          </div>
+        </div>
+
+        <div class="DB"  id="easybase">
+          <button class="BDButton" id="easybase">
+             <i data-lucide="chevron-right" class="w-5 transition-transform duration-50 opacity-40"></i> easybase
+          </button>
+          <div class="TABLES flex flex-row hidden">
+            <button class="TableButton">
+              <div class="TreeSub">  </div>
+              <p class="">Users</p>
+            </button>
+          </div>
+        </div>
+
+        <div class="DB" id="J6">
+          <button class="BDButton" id="J6">
+             <i data-lucide="chevron-right" class="w-5 transition-transform duration-50 opacity-40"></i> J6
+          </button>
+          <div class="TABLES flex flex-row hidden">
+            <button class="TableButton">
+              <div class="TreeSub">  </div>
+              <p class="">Banks</p>
+            </button>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="basis-10/12 h-full bg-neutral-800 rounded-xl p-5 border-0.2 border-emerald-200">
+        <p>table</p>
+        <button id="SUB">Submit</button>
+      </div>
+    </main>
+  </body>
+
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+  <script>
+    lucide.createIcons();
+  </script>
+</html>
+

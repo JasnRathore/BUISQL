@@ -1,0 +1,13 @@
+{
+  "name": "taubuisql",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "tauri": "tauri"
+  },
+  "devDependencies": {
+    "@tauri-apps/cli": "^1.5.8",
+    "tailwindcss": "^3.4.1"
+  }
+}
