@@ -8,9 +8,9 @@ let DBS= {};
 //  greetMsgEl.textContent = await invoke("beet", { name: greetInputEl.value });
 //}
 
-async function GetDBS() {
-  let data = await invoke("GetDBS");
-  console.log(data);
+async function getListOfDatabases() {
+  let data = await invoke("get_list_of_databases");
+  Terminal_log(data);
 }
 
 function ToggletTree(DBElm) {
@@ -26,10 +26,14 @@ function ToggletTree(DBElm) {
   }
 }
 
-async function LogData(Message) {
+async function Terminal_log(Message) {
     console.log(Message);
-    const Data = Message.toString();
-    await invoke("RustLog", { message: Data});
+    const Data = JSON.stringify(Message);
+    try {
+      await invoke("terminal_log", { message: Data});
+    } catch (error) {
+      console.log(error);
+    }
 }
 
 
@@ -37,11 +41,10 @@ window.addEventListener("DOMContentLoaded", () => {
 
   document.getElementById("SUB").addEventListener("click", (e) => {
     e.preventDefault();
-    GetDBS();
+    getListOfDatabases();
   });
 
   const tempDBS = document.querySelectorAll(".DB");
-
   for (let i = 0; i < tempDBS.length; i+=1 ) {
     const DB = tempDBS[i];
     const Parts = DB.children
@@ -54,3 +57,6 @@ window.addEventListener("DOMContentLoaded", () => {
   }
   console.log("DOMContentLoaded");
 });
+
+const viewer = document.getElementById("viewer");
+const tempicon = document.createElement("i");
