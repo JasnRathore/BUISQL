@@ -4,14 +4,20 @@
 
 @layer components {
 
-    .BDButton {
-        @apply bg-transparent px-5 w-full border-none flex flex-row hover:bg-neutral-700;
+    .DBButton {
+        @apply bg-transparent px-5 w-full border-none flex flex-row hover:bg-neutral-700 h-7 content-center;
     }
+
+    .SideBarIcons {
+        @apply h-6 transition-transform duration-50 opacity-40 mt-2p;
+    }
+
     .TableButton {
         @apply bg-transparent hover:bg-neutral-700 border-none pl-7.5 flex flex-row w-full;
     }
+
     .TreeSub {
-        @apply bg-transparent hover:bg-neutral-700 border-l-0.2 border-white/20 whitespace-pre;
+        @apply bg-transparent hover:bg-neutral-700 border-l-0.2 border-white/20 whitespace-pre ;
     }
 
 }

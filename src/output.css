@@ -544,19 +544,30 @@ video {
   --tw-backdrop-sepia:  ;
 }
 
-.BDButton {
+.DBButton {
   display: flex;
+  height: 1.75rem;
   width: 100%;
   flex-direction: row;
+  align-content: center;
   border-style: none;
   background-color: transparent;
   padding-left: 1.25rem;
   padding-right: 1.25rem;
 }
 
-.BDButton:hover {
+.DBButton:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(64 64 64 / var(--tw-bg-opacity));
+}
+
+.SideBarIcons {
+  margin-top: 2px;
+  height: 1.5rem;
+  opacity: 0.4;
+  transition-property: transform;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 50ms;
 }
 
 .TableButton {
@@ -585,6 +596,10 @@ video {
   background-color: rgb(64 64 64 / var(--tw-bg-opacity));
 }
 
+.mr-1 {
+  margin-right: 0.25rem;
+}
+
 .flex {
   display: flex;
 }
@@ -605,8 +620,8 @@ video {
   height: 100vh;
 }
 
-.w-5 {
-  width: 1.25rem;
+.h-5 {
+  height: 1.25rem;
 }
 
 .w-20 {
@@ -638,24 +653,16 @@ video {
   place-content: start;
 }
 
-.content-start {
-  align-content: flex-start;
-}
-
-.justify-start {
-  justify-content: flex-start;
-}
-
 .gap-6 {
   gap: 1.5rem;
 }
 
-.rounded-xl {
-  border-radius: 0.75rem;
-}
-
 .rounded-lg {
   border-radius: 0.5rem;
+}
+
+.rounded-xl {
+  border-radius: 0.75rem;
 }
 
 .border-0 {
@@ -681,11 +688,6 @@ video {
   background-color: rgb(23 23 23 / var(--tw-bg-opacity));
 }
 
-.bg-fuchsia-500 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(217 70 239 / var(--tw-bg-opacity));
-}
-
 .p-5 {
   padding: 1.25rem;
 }
@@ -698,25 +700,6 @@ video {
 .text-white {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
-}
-
-.opacity-40 {
-  opacity: 0.4;
-}
-
-.drop-shadow {
-  --tw-drop-shadow: drop-shadow(0 1px 2px rgb(0 0 0 / 0.1)) drop-shadow(0 1px 1px rgb(0 0 0 / 0.06));
-  filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
-}
-
-.filter {
-  filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
-}
-
-.transition-transform {
-  transition-property: transform;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 150ms;
 }
 
 .hover\:bg-fuchsia-500:hover {

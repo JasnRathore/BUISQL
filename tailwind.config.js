@@ -10,6 +10,16 @@ export default {
       padding: {
         "7.5": "30px",
       },
+      colors: {
+        "GitBg":"#24292e",
+      },
+      margin: {
+        "1p": "1px",
+        "2p": "2px",
+      },
+      transitionDuration: {
+        '50': '50ms',
+      },
     },
   },
   plugins: [],

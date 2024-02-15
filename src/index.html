@@ -4,47 +4,21 @@
     <meta charset="UTF-8" />
     <link rel="stylesheet" href="output.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Tauri App</title>
-    <script type="module" src="/main.js" defer></script>
-  </head>
 
+  </head>
   <body>
     <main class="p-5 flex flex-row flex-str content h-screen gap-6 bg-neutral-900 text-white">
       <div class="basis-2/12 h-full bg-neutral-800 rounded-lg py-5 flex flex-col border-0.2 border-emerald-200" id="SIDEBAR">
 
         <div class="DB" id="hades">
-          <button class="BDButton" id="hades">
-             <i data-lucide="chevron-right" class="w-5 transition-transform duration-50 opacity-40"></i>
+          <button class="DBButton" id="hades">
+            <img src="./assets/chevron-right.svg" class="SideBarIcons" />
              Hades
           </button>
-          <div class="TABLES flex flex-row hidden">
+          <div class="TABLES flex flex-col hidden">
             <button class="TableButton">
-              <div class="TreeSub">  </div>
+              <div class="TreeSub"><img src /></div>
               Prisoners
-            </button>
-          </div>
-        </div>
-
-        <div class="DB"  id="easybase">
-          <button class="BDButton" id="easybase">
-             <i data-lucide="chevron-right" class="w-5 transition-transform duration-50 opacity-40"></i> easybase
-          </button>
-          <div class="TABLES flex flex-row hidden">
-            <button class="TableButton">
-              <div class="TreeSub">  </div>
-              <p class="">Users</p>
-            </button>
-          </div>
-        </div>
-
-        <div class="DB" id="J6">
-          <button class="BDButton" id="J6">
-             <i data-lucide="chevron-right" class="w-5 transition-transform duration-50 opacity-40"></i> J6
-          </button>
-          <div class="TABLES flex flex-row hidden">
-            <button class="TableButton">
-              <div class="TreeSub">  </div>
-              <p class="">Banks</p>
             </button>
           </div>
         </div>
@@ -62,5 +36,6 @@
   <script>
     lucide.createIcons();
   </script>
+  <script type="module" src="./widgets.js" defer></script>
+  <script type="module" src="./main.js" defer></script>
 </html>
-
