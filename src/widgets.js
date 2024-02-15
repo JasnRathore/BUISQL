@@ -5,10 +5,25 @@ async function getListOfDatabases() {
   return data;
 }
 
-function createDatabaseWidget(databaseName) {
+async function getListOfTables(databaseName) {
+    let response = await invoke("get_list_of_tables", {databaseName: databaseName});
+    return response;
+  }
+
+async function Terminal_log(Message) {
+    console.log(Message);
+    const Data = JSON.stringify(Message);
+    try {
+      await invoke("terminal_log", { message: Data});
+    } catch (error) {
+      console.log(error);
+    }
+}
+
+async function createDatabaseWidget(databaseName) {
     const SideBar = document.getElementById("SIDEBAR");
     const newDatabaseWidget = document.createElement("div");
-    newDatabaseWidget.classList.add("DB");
+    newDatabaseWidget.classList.add(...["DB"]);
     newDatabaseWidget.id = databaseName;
 
     const newDBicon = document.createElement('img');
@@ -32,8 +47,8 @@ function createDatabaseWidget(databaseName) {
 
     newDatabaseWidget.appendChild(newDBbutton);
 
-    const tableList = ["jack", "black", "bun", "jun", "trun"];
-    const newTableContainer = createTableContainerWidget(tableList);
+    const listOfTableNames = await getListOfTables(databaseName);
+    const newTableContainer = createTableContainerWidget(listOfTableNames);
     newDatabaseWidget.appendChild(newTableContainer);
 
     SideBar.appendChild(newDatabaseWidget);
@@ -70,11 +85,21 @@ function createTableWidget(tabelName) {
     return newTable;
 }
 
+async function init() {
+  const listOfDatabases = await getListOfDatabases();
+  listOfDatabases.forEach((databaseName) => {
+    createDatabaseWidget(databaseName);
+  })
+}
+
 window.addEventListener("DOMContentLoaded", () => {
+
     document.getElementById("SUB").addEventListener("click", (e) => {
         e.preventDefault();
-        createDatabaseWidget("JackAndJill")
       });
+
+  init();
+
 })
 
 function ToggletTree(DBid) {

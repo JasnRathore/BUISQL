@@ -17,9 +17,8 @@ struct TableName {
 
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn std::error::Error>>  {
-    let _ = get_list_of_tables("hades").await;
     tauri::Builder::default()
-        .invoke_handler(tauri::generate_handler![terminal_log, get_list_of_databases])
+        .invoke_handler(tauri::generate_handler![terminal_log, get_list_of_databases, get_list_of_tables])
         //.invoke_handler(tauri::generate_handler![GetDBS])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
@@ -57,7 +56,7 @@ async fn get_list_of_databases() -> Vec<String> {
 }
 
 #[tauri::command]
-async fn get_list_of_tables(database_name: &str) -> Result<Vec<String>, Box<dyn std::error::Error>>{
+async fn get_list_of_tables(database_name: &str) -> Result<Vec<String>, String>{
     let mut list_of_tables: Vec<String> = Vec::new();
 
     let database_url: String = format!("mysql://root:root@localhost:3306/{}",database_name);
@@ -75,7 +74,6 @@ async fn get_list_of_tables(database_name: &str) -> Result<Vec<String>, Box<dyn 
         .await;
     match result {
         Ok(tables) => {
-            println!("hello");
             for row in tables {
                 list_of_tables.push(row.table_name);
             }
