@@ -1,0 +1,45 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+
+    .DBButton {
+        @apply bg-transparent px-5 w-full border-none flex flex-row hover:bg-[#323232] h-7 content-center;
+    }
+
+    .SideBarIcons {
+        @apply h-6 transition-transform duration-50 opacity-40 mt-2p;
+    }
+
+    .TableButton {
+        @apply bg-transparent hover:bg-[#323232] border-none pl-7.5 flex flex-row w-full;
+    }
+
+    .TreeSub {
+        @apply bg-transparent hover:bg-neutral-700 border-l-0.2 border-white/20 whitespace-pre ;
+    }
+
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 12px;
+}
+/* Track */
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    @apply bg-neutral-700;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: white;
+    opacity: 20%;
+}
