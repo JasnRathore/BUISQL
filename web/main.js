@@ -88,22 +88,28 @@ function createTableWidget(databaseName, tableName) {
     newTableWidget.addEventListener('click', (e) => {
       const databaseName = e.target.getAttribute('DB')
       const tableName = e.target.getAttribute('table')
-      terminalLog(databaseName);
+      UpdateTableView(databaseName, tableName);
   });
 
     return newTableWidget;
 }
 
-function UpdateTableView(databaseName, tableName) {
+async function UpdateTableView(databaseName, tableName) {
     const newTable = document.createElement("table");
-    const [headers, tableData] = getTableData(databaseName, tableName);
-    const headersRowWidget = document.createElement("tr");
+    newTable.classList.add('table-auto');
+    const [headers, tableData] = await getTableData(databaseName, tableName);
+    const headersRowWidget = document.createElement("thead");
+    const tempheadersRowWidget = document.createElement("tr");
+
     headers.forEach(header => {
       const headerWidget = document.createElement("th");
       headerWidget.innerHTML = header;
-      headersRowWidget.appendChild(headerWidget);
+      tempheadersRowWidget.appendChild(headerWidget);
     });
+
+    headersRowWidget.appendChild(tempheadersRowWidget);
     newTable.appendChild(headersRowWidget);
+    const tableBody = document.createElement('tbody');
     tableData.forEach(row => {
       const rowWidget = document.createElement("tr");
       row.forEach(item => {
@@ -111,10 +117,12 @@ function UpdateTableView(databaseName, tableName) {
         itemWidget.innerHTML += item;
         rowWidget.appendChild(itemWidget);
       });
-      newTable.appendChild(rowWidget);
+      tableBody.appendChild(rowWidget);
     });
+    newTable.appendChild(tableBody);
     const viewer = document.getElementById("viewer");
-    viewer.innerHTML = newTable;
+    viewer.innerHTML = '';
+    viewer.appendChild(newTable);
 }
 
 

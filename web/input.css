@@ -22,6 +22,11 @@
 
 }
 
+table, th, td {
+    border: 1px solid white;
+    border-collapse: collapse;
+  }
+
 /* width */
 ::-webkit-scrollbar {
     width: 12px;
@@ -34,8 +39,7 @@
 /* Handle */
 ::-webkit-scrollbar-thumb {
     @apply bg-neutral-700;
-    border-top-right-radius: 8px;
-    border-bottom-right-radius: 8px;
+    border-radius: 8px;
 }
 
 /* Handle on hover */
