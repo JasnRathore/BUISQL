@@ -103,6 +103,7 @@ async function UpdateTableView(databaseName, tableName) {
 
     headers.forEach(header => {
       const headerWidget = document.createElement("th");
+      headerWidget.classList.add('p-2');
       headerWidget.innerHTML = header;
       tempheadersRowWidget.appendChild(headerWidget);
     });
@@ -114,6 +115,7 @@ async function UpdateTableView(databaseName, tableName) {
       const rowWidget = document.createElement("tr");
       row.forEach(item => {
         const itemWidget = document.createElement("td");
+        itemWidget.classList.add('p-2');
         itemWidget.innerHTML += item;
         rowWidget.appendChild(itemWidget);
       });

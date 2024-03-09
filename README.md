@@ -1,7 +1,18 @@
-"# BUISQL"
+# BUISQL
 
+>NOTE:
+>The config file has default credentials
+>Change it to your personal credentials
 
-A simple Mysql data viewer made using eel
+BUISQL is a simple GUI application built to view MYSQL Data without using the command line
 
-The config file has default credentials
-Change it to your personal credentials
+It is built with [eel](https://github.com/python-eel/Eel) and mysqlconnector.
+
+######Python libraries used:
+- eel
+- mysqlconnector
+- json
+- datetime
+
+######External Depedndencies:
+ - Tailwind css { Using Tailwind CLI }
