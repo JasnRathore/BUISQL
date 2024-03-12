@@ -152,7 +152,7 @@ async function init() {
 
 window.addEventListener("DOMContentLoaded", () => {
 
-  //
+  // comment out to use right click and open context menu
   document.addEventListener("contextmenu", (event) => {
     event.preventDefault();
   });
