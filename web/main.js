@@ -142,7 +142,6 @@ async function UpdateTableView(databaseName, tableName) {
     viewer.appendChild(newTable);
 }
 
-
 async function init() {
   await connectToMysql();
   const listOfDatabases = await getListOfDatabases();

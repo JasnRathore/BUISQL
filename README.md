@@ -8,7 +8,7 @@ BUISQL is a simple GUI application built to view MYSQL Data without using the co
 
 It is built with [eel](https://github.com/python-eel/Eel) and mysqlconnector.
 
-###### Python libraries used:
+###### Python packages used:
 - eel
 - mysqlconnector
 - json
