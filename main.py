@@ -96,4 +96,4 @@ ORDER BY ordinal_position;""")
     TableData = CheckForDate(TableData)
     return (Headers, TableData)
 
-eel.start("index.html")
+eel.start("index.html", title="BUISQL", mode="chrome")
