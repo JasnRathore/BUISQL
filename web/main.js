@@ -13,6 +13,11 @@ async function getTableData(databaseName, tableName) {
   return response;
 }
 
+async function getConfigData() {
+  const response = await eel.GetConfigData()();
+  return response;
+}
+
 async function terminalLog(Message) {
     console.log(Message);
     const Data = JSON.stringify(Message);
@@ -123,6 +128,8 @@ async function UpdateTableView(databaseName, tableName) {
     });
     newTable.appendChild(tableBody);
     const viewer = document.getElementById("viewer");
+    const tableHeader = document.getElementById("tableheader");
+    tableHeader.innerHTML = tableName;
     viewer.innerHTML = '';
     viewer.appendChild(newTable);
 }
@@ -137,8 +144,27 @@ async function init() {
 
 window.addEventListener("DOMContentLoaded", () => {
 
-  init();
+  const openSettingsButton = document.querySelector('#opensettingsbutton');
+  const closeSettingsButton = document.querySelector('#closesettingsbutton');
+  const settingsModal = document.querySelector('#settingsmodal');
+  openSettingsButton.addEventListener('click', () => {
+    settingsModal.showModal();
+  });
+  closeSettingsButton.addEventListener('click', () => {
+    settingsModal.close();
+  });
+  const reloadButton = document.querySelector('#reloadbutton');
+  reloadButton.addEventListener('click', () =>{
+    location.reload();
+  });
 
+
+  //getConfigData.then((data) => {
+  //  if (data['HOST'] === '') {
+//
+  //  }
+  //});
+  init();
 })
 
 function ToggletTree(DBid) {
@@ -152,4 +178,8 @@ function ToggletTree(DBid) {
       Icon.classList.add("rotate-90");
       Tables.classList.remove("hidden");
     }
+}
+
+async function settings() {
+
 }

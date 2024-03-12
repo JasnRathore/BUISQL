@@ -13,6 +13,8 @@ with open("config/config.json",'r') as ConfigFile:
 Cursor  = SqlConn.cursor()
 
 def CheckForDate(TableData: list) -> list:
+    if TableData == []:
+        return []
     FirstRow: tuple = TableData[0]
     flag: bool = False
     Indexes: list = []
@@ -42,6 +44,13 @@ def CheckForDate(TableData: list) -> list:
 
 
 eel.init("web")
+
+@eel.expose
+def GetConfigData() -> dict:
+    with open("config/config.json",'r') as ConfigFile:
+        ConfigData: dict = json.load(ConfigFile)
+    return ConfigData
+
 
 @eel.expose
 def TerminalLog(data):

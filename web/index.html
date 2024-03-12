@@ -5,22 +5,51 @@
     <link rel="stylesheet" href="output.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   </head>
-  <body class="w-full">
-    <main class="p-5 flex flex-row flex-str content h-screen gap-6 bg-neutral-900 text-white">
-      <div class="w-max-1/4 w-min-1/6 h-full bg-neutral-800 rounded-lg py-5 flex flex-col border-0.2 border-emerald-200 truncate overflow-y-auto hover:overflow-y-scroll" id="SIDEBAR">
+  <body class="w-full bg-neutral-900 text-white h-screen overflow-y-hidden">
+    <div id="topbar" class="bg-neutral-800 border-b-0.2 border-neutral-600 px-3 flex flex-row gap-3">
+
+      <button id="opensettingsbutton" class="hover:bg-neutral-700 p-1 rounded-sm tooltip">
+        <img src="./assets/settings.svg" alt="" class="invert w-5">
+        <span class="absolute tooltiptext bg-neutral-700 border-0.5 border-neutral-600 px-1 rounded">settings</span>
+      </button>
+      <button id="reloadbutton" class="hover:bg-neutral-700 p-1 rounded-sm relative tooltip">
+        <img src="./assets/reload.svg" alt="" class="invert w-5">
+        <span class="absolute tooltiptext bg-neutral-700 border-0.5 border-neutral-600 px-1 rounded">reload</span>
+      </button>
+
+    </div>
+
+    <main class="flex flex-row h-full gap-6 ">
+      <div id="SIDEBAR" class="w-1/5 h-full bg-neutral-800 pt-3 pb-7 border-r-0.2 border-neutral-600 flex flex-col truncate overflow-y-auto hover:overflow-y-scroll" >
         <!-- SideBar-->
       </div>
-
-      <div id="viewer" class="w-full h-full bg-neutral-800 rounded-xl p-5 border-0.2 border-emerald-200 overflow-scroll">
-
+      <div class="bg-neutral-900 flex flex-col w-4/5 py-3">
+        <p id="tableheader" class="uppercase text-lg px-3"></p>
+        <div id="viewer" class="w-full h-full p-3 overflow-scroll">
+        </div>
       </div>
     </main>
+    <dialog id="settingsmodal" class="bg-neutral-800 text-white w-1/4 border-0.2 border-neutral-600 rounded-sm">
+      <div class="px-2 py-1 flex flex-row justify-between border-b-0.2 border-neutral-600">
+        <p>Settings</p>
+        <button id="closesettingsbutton" class="hover:border-0.2 hover:border-red-800 px-1 rounded-sm"><img src="./assets/close.svg" alt="" class="invert"></button>
+      </div>
+      <div class="px-2 py-1 flex flex-col">
+        <label for="">HOST: </label>
+        <input id='host' type="text" class="bg-neutral-900 outline-none focus:border-teal-500 pl-2 border-0.5 border-neutral-600 rounded">
+        <label for="">USER: </label>
+        <input id='user' type="text" class="bg-neutral-900 outline-none focus:border-teal-500 pl-2 border-0.5 border-neutral-600 rounded">
+        <label for="">PASSWORD: </label>
+        <input id='password' type="password" class="bg-neutral-900 outline-none focus:border-teal-500 pl-2 border-0.5 border-neutral-600 rounded">
+        <div class="flex flex-row justify-end mt-2">
+          <button class="flex flex-row mx-1 border-0.2 border-neutral-600 hover:border-teal-500 w-max px-1 rounded">Save</button>
+        </div>
+      </div>
+
+
+    </dialog>
   </body>
 
-  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
-  <script>
-    lucide.createIcons();
-  </script>
   <script type="text/javascript" src="../eel.js"></script>
   <script type="module" src="./main.js" defer></script>
 </html>
