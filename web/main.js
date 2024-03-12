@@ -1,3 +1,26 @@
+async function terminalLog(Message) {
+  console.log(Message);
+  const Data = JSON.stringify(Message);
+  try {
+    eel.TerminalLog(Data);
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+async function getConfigData() {
+  const response = await eel.GetConfigData()();
+  return response;
+}
+
+async function setConfigData(data) {
+  await eel.SetConfigData(data);
+}
+
+async function connectToMysql() {
+  await eel.ConnectToMysql();
+}
+
 async function getListOfDatabases() {
   const response = await eel.GetListOfDatabases()();
   return response;
@@ -11,21 +34,6 @@ async function getListOfTables(databaseName) {
 async function getTableData(databaseName, tableName) {
   const response = await eel.GetTableData(databaseName, tableName)();
   return response;
-}
-
-async function getConfigData() {
-  const response = await eel.GetConfigData()();
-  return response;
-}
-
-async function terminalLog(Message) {
-    console.log(Message);
-    const Data = JSON.stringify(Message);
-    try {
-      eel.TerminalLog(Data);
-    } catch (error) {
-      console.log(error);
-    }
 }
 
 async function createDatabaseWidget(databaseName) {
@@ -136,6 +144,7 @@ async function UpdateTableView(databaseName, tableName) {
 
 
 async function init() {
+  await connectToMysql();
   const listOfDatabases = await getListOfDatabases();
   listOfDatabases.forEach((databaseName) => {
     createDatabaseWidget(databaseName);
@@ -143,6 +152,12 @@ async function init() {
 }
 
 window.addEventListener("DOMContentLoaded", () => {
+
+  //
+  document.addEventListener("contextmenu", (event) => {
+    event.preventDefault();
+  });
+
 
   const openSettingsButton = document.querySelector('#opensettingsbutton');
   const closeSettingsButton = document.querySelector('#closesettingsbutton');
@@ -158,13 +173,16 @@ window.addEventListener("DOMContentLoaded", () => {
     location.reload();
   });
 
+  settings();
 
-  //getConfigData.then((data) => {
-  //  if (data['HOST'] === '') {
-//
-  //  }
-  //});
-  init();
+  getConfigData().then((data) => {
+    if ((data['HOST'] === "")  || (data['USER'] === "") || (data['PASSWORD'] === "")) {
+      settingsModal.showModal()
+    }
+    else {
+      init();
+    }
+  });
 })
 
 function ToggletTree(DBid) {
@@ -181,5 +199,23 @@ function ToggletTree(DBid) {
 }
 
 async function settings() {
+  const settingsMenu = document.querySelector("#settingsmodal");
+  const hostInput = settingsMenu.querySelector("#host");
+  const userInput = settingsMenu.querySelector("#user");
+  const passwordInput = settingsMenu.querySelector("#password");
+  const saveButton = settingsMenu.querySelector("#savebutton");
+
+  saveButton.addEventListener('click', () => {
+    const data = {
+      HOST: hostInput.value,
+      USER: userInput.value,
+      PASSWORD: passwordInput.value
+    };
+    setConfigData(data);
+    location.reload();
+  });
+}
+
+async function toast(message) {
 
 }

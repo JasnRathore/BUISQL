@@ -3,14 +3,9 @@ import mysql.connector
 import json
 import datetime
 
-with open("config/config.json",'r') as ConfigFile:
-    ConfigData: dict = json.load(ConfigFile)
-    SqlConn = mysql.connector.connect(
-        host = ConfigData['HOST'],
-        user = ConfigData['USER'],
-        password = ConfigData['PASSWORD']
-        )
-Cursor  = SqlConn.cursor()
+SqlConn = None
+Cursor = None
+
 
 def CheckForDate(TableData: list) -> list:
     if TableData == []:
@@ -46,15 +41,31 @@ def CheckForDate(TableData: list) -> list:
 eel.init("web")
 
 @eel.expose
+def TerminalLog(data):
+    print(data)
+
+@eel.expose
 def GetConfigData() -> dict:
     with open("config/config.json",'r') as ConfigFile:
         ConfigData: dict = json.load(ConfigFile)
     return ConfigData
 
+@eel.expose
+def SetConfigData(Data: dict):
+    with open("config/config.json",'w') as ConfigFile:
+        json.dump(Data, ConfigFile)
 
 @eel.expose
-def TerminalLog(data):
-    print(data)
+def ConnectToMysql():
+    global SqlConn
+    global Cursor
+    ConfigData: dict = GetConfigData()
+    SqlConn = mysql.connector.connect(
+        host = ConfigData['HOST'],
+        user = ConfigData['USER'],
+        password = ConfigData['PASSWORD']
+        )
+    Cursor = SqlConn.cursor()
 
 @eel.expose
 def GetListOfDatabases() -> list:
@@ -84,6 +95,5 @@ ORDER BY ordinal_position;""")
     TableData: list = Cursor.fetchall()
     TableData = CheckForDate(TableData)
     return (Headers, TableData)
-
 
 eel.start("index.html")
